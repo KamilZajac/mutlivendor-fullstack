@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ShopItemModule } from './shop-item/shop-item.module';
 import { getMetadataArgsStorage } from 'typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { ConfigModule } from '@nestjs/config';
     }),
     ConfigModule.forRoot(),
     UserModule,
-    ShopItemModule
+    ShopItemModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
