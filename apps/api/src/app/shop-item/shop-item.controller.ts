@@ -1,9 +1,8 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req } from '@nestjs/common';
 import { ShopItemService } from './shop-item.service';
-import { CreateShopItemDto } from './dto/create-shop-item.dto';
-import { UpdateShopItemDto } from './dto/update-shop-item.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { ShopItemResponse } from '@multivendor-fullstack/interfaces';
+import { CreateShopItemDto, UpdateShopItemDto } from '@multivendor-fullstack/dto';
 
 @Controller('shop-item')
 export class ShopItemController {

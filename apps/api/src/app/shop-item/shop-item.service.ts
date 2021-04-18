@@ -1,8 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { CreateShopItemDto } from './dto/create-shop-item.dto';
-import { UpdateShopItemDto } from './dto/update-shop-item.dto';
 import { ShopItem } from './entities/shop-item.entity';
 import { ShopItemResponse } from '@multivendor-fullstack/interfaces';
+import { CreateShopItemDto, UpdateShopItemDto } from '@multivendor-fullstack/dto';
 
 @Injectable()
 export class ShopItemService {

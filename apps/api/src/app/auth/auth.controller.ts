@@ -1,10 +1,8 @@
 import { Controller, Post, Body, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UserService } from '../user/user.service';
-import { CreateUserDto } from '../user/dto/create-user.dto';
-import { LoginDto } from './dto/login.dto';
-import { RefreshTokenDto } from './dto/refresh-token.dto';
 import { AuthenticationPayload, UserResponse } from '@multivendor-fullstack/interfaces';
+import { CreateUserDto, LoginDto, RefreshTokenDto } from '@multivendor-fullstack/dto';
 
 @Controller('auth')
 export class AuthController {

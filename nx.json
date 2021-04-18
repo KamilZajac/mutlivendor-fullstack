@@ -15,6 +15,7 @@
     "api": { "tags": [] },
     "shop": { "tags": [] },
     "shop-e2e": { "tags": [], "implicitDependencies": ["shop"] },
-    "interfaces": { "tags": [] }
+    "interfaces": { "tags": [] },
+    "dto": { "tags": [] }
   }
 }

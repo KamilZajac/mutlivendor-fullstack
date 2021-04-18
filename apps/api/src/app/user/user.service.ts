@@ -1,9 +1,8 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { compare, hash } from 'bcrypt';
 import { UserResponse } from '@multivendor-fullstack/interfaces';
+import { CreateUserDto, UpdateUserDto } from '@multivendor-fullstack/dto';
 
 @Injectable()
 export class UserService {

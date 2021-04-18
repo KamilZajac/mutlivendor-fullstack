@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@multivendor-fullstack/interfaces": ["libs/interfaces/src/index.ts"]
+      "@multivendor-fullstack/interfaces": ["libs/interfaces/src/index.ts"],
+      "@multivendor-fullstack/dto": ["libs/dto/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
