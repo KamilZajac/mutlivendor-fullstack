@@ -18,6 +18,11 @@
     "client": { "tags": [] },
     "client-e2e": { "tags": [], "implicitDependencies": ["client"] },
     "admin": { "tags": [] },
-    "admin-e2e": { "tags": [], "implicitDependencies": ["admin"] }
+    "admin-e2e": { "tags": [], "implicitDependencies": ["admin"] },
+    "ui": { "tags": [] },
+    "data-access": { "tags": [] },
+    "profile-profile-feature": { "tags": [] },
+    "client-storefront": { "tags": [] },
+    "auth": { "tags": [] }
   }
 }

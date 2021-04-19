@@ -16,7 +16,19 @@
     "baseUrl": ".",
     "paths": {
       "@multivendor-fullstack/interfaces": ["libs/interfaces/src/index.ts"],
-      "@multivendor-fullstack/dto": ["libs/dto/src/index.ts"]
+      "@multivendor-fullstack/dto": ["libs/dto/src/index.ts"],
+      "@multivendor-fullstack/ui": ["libs/ui/src/index.ts"],
+      "@multivendor-fullstack/client/homepage": [
+        "libs/client/homepage/src/index.ts"
+      ],
+      "@multivendor-fullstack/data-access": ["libs/data-access/src/index.ts"],
+      "@multivendor-fullstack/profile/profile-feature": [
+        "libs/profile/profile-feature/src/index.ts"
+      ],
+      "@multivendor-fullstack/client/storefront": [
+        "libs/client/storefront/src/index.ts"
+      ],
+      "@multivendor-fullstack/auth": ["libs/auth/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
