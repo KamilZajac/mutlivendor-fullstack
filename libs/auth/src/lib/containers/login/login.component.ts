@@ -1,21 +1,19 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../data-access/auth.service';
 import { LoginDto } from '@multivendor-fullstack/dto';
-import { take } from 'rxjs/operators';
-import { AuthenticationPayload } from '@multivendor-fullstack/interfaces';
+import { AuthState } from '@multivendor-fullstack/auth';
+import { Store } from '@ngrx/store';
+import * as authActions from './../../+state/auth.actions';
 
 @Component({
   selector: 'multivendor-fullstack-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent  {
+export class LoginComponent {
 
-  constructor(private authService: AuthService) { }
+  constructor(private store: Store<AuthState>) {}
 
-  public login(data:LoginDto) {
-    this.authService.login(data).pipe(take(1)).subscribe((res: AuthenticationPayload) => {
-      console.log(res)
-    })
+  public onLogin(data: LoginDto) {
+    this.store.dispatch(authActions.login({ payload: data }));
   }
 }

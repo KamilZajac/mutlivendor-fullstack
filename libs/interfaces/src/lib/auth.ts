@@ -6,9 +6,14 @@ export interface CreateRefreshTokenResponse {
 
 export interface AuthenticationPayload {
 	user: UserResponse
-	payload: {
-		type: string
+	jwt: {
 		token: string
-		refresh_token?: string
+		refresh?: string
 	}
+}
+
+
+export interface AuthenticationResponse {
+  success: boolean;
+  data: AuthenticationPayload
 }

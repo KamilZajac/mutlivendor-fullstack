@@ -7,11 +7,15 @@ import { RegisterFormComponent } from './components/register-form/register-form.
 import { RegisterComponent } from './containers/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import * as fromAuth from './+state/auth.reducer';
+import { AuthEffects } from './+state/auth.effects';
 
 export const authRoutes: Route[] = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
 ];
 
 @NgModule({
@@ -19,14 +23,15 @@ export const authRoutes: Route[] = [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forFeature(fromAuth.AUTH_FEATURE_KEY, fromAuth.reducer),
+    EffectsModule.forFeature([AuthEffects]),
   ],
   declarations: [
     LoginFormComponent,
     LoginComponent,
     RegisterFormComponent,
-    RegisterComponent
-  ]
+    RegisterComponent,
+  ],
 })
-export class AuthModule {
-}
+export class AuthModule {}
