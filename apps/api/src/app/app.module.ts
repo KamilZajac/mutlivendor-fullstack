@@ -2,12 +2,12 @@ import { Module } from '@nestjs/common';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ShopItemModule } from './shop-item/shop-item.module';
 import { getMetadataArgsStorage } from 'typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from '@multivendor-fullstack/api/auth';
+import { ShopItemModule } from '@multivendor-fullstack/api/shop-item';
+import { UserModule } from '@multivendor-fullstack/api/user';
 
 @Module({
   imports: [
