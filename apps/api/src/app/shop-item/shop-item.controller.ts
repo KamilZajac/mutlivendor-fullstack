@@ -27,6 +27,7 @@ export class ShopItemController {
     return this.shopItemService.findOne(id);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateShopItemDto: UpdateShopItemDto): Promise<ShopItemResponse> {
     return this.shopItemService.update(id, updateShopItemDto);

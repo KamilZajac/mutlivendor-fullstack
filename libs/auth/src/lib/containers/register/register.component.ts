@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../data-access/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { RegisterDto } from '@multivendor-fullstack/dto';
 import { take } from 'rxjs/operators';
 import { AuthenticationPayload } from '@multivendor-fullstack/interfaces';

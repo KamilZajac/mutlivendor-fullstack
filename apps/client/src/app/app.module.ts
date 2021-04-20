@@ -6,10 +6,11 @@ import { RouterModule } from '@angular/router';
 import { UiModule } from '@multivendor-fullstack/ui';
 import { AuthModule, authRoutes } from '@multivendor-fullstack/auth';
 import {config} from '../environments/environment'
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Store, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AuthInterceptor } from '../../../../libs/auth/src/lib/services/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +29,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   providers: [
     {
       provide: 'apiURL', useValue: config.apiURL
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
     }
     ],
   bootstrap: [AppComponent]
