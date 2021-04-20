@@ -5,7 +5,8 @@ import { LoginDto } from '@multivendor-fullstack/dto';
 export enum AuthActionTypes {
   Login = '[Auth Page] Login',
   LoginSuccess = '[Auth API] Login Success',
-  LoginFail = '[Auth API] Login Fail'
+  LoginFail = '[Auth API] Login Fail',
+  Logout = '[Auth API] Logout',
 }
 
 export const login = createAction(
@@ -21,4 +22,9 @@ export const loginSuccess = createAction(
 export const loginFailure = createAction(
   AuthActionTypes.LoginFail,
   props<{ payload: any }>()
+);
+
+export const logout = createAction(
+  AuthActionTypes.Logout,
+  props<any>()
 );

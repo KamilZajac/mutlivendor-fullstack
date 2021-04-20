@@ -1,9 +1,9 @@
 import { HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, throwError } from 'rxjs';
+import { BehaviorSubject, of, throwError } from 'rxjs';
 import { AuthService } from '@multivendor-fullstack/auth';
 import { Router } from '@angular/router';
-import { catchError, filter, switchMap, take } from 'rxjs/operators';
+import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -42,7 +42,12 @@ export class AuthInterceptor implements HttpInterceptor {
           this.isRefreshing = false;
           this.refreshTokenSubject.next(tokens.token);
           return next.handle(this.addToken(request, tokens.token));
-        }));
+        }),
+        catchError(e => {
+          this.router.navigateByUrl('/auth');
+          return of(e);
+        })
+      );
 
     } else {
       return this.refreshTokenSubject.pipe(

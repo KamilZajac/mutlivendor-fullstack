@@ -4,6 +4,9 @@ import { RegisterDto, LoginDto } from '@multivendor-fullstack/dto';
 import { AuthenticationResponse, UserResponse } from '@multivendor-fullstack/interfaces';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { AuthState } from '../+state/auth.reducer';
+import { Store } from '@ngrx/store';
+import * as authActions from '../+state/auth.actions';
 
 
 @Injectable({
@@ -15,6 +18,7 @@ export class AuthService {
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
 
   constructor(
+    private store: Store<AuthState>,
     private http: HttpClient,
     @Inject('apiURL') private apiURL: string
   ) {
@@ -48,13 +52,22 @@ export class AuthService {
         map((res: AuthenticationResponse) => {
           return res.data.jwt;
         }),
-        catchError(e => of(e))
+        catchError(e => {
+          this.logout()
+          this.store.dispatch(authActions.logout(null))
+          return of(e)
+        })
       );
   }
 
 
   getJwtToken() {
     return localStorage.getItem(this.JWT_TOKEN);
+  }
+
+  private logout() {
+    this.removeTokens();
+
   }
 
   private getRefreshToken() {
