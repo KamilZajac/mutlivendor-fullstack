@@ -12,7 +12,7 @@ import { UserModule } from '@multivendor-fullstack/api/user';
 		JwtModule.register({
 			secret: '123123',
 			signOptions: {
-				expiresIn: '10s',
+				expiresIn: '60m',
 			}
 		}),
 	],

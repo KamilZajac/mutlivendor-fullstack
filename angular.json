@@ -241,7 +241,10 @@
             "tsConfig": "apps/admin/tsconfig.app.json",
             "aot": true,
             "assets": ["apps/admin/src/favicon.ico", "apps/admin/src/assets"],
-            "styles": ["apps/admin/src/styles.scss"],
+            "styles": [
+              "apps/admin/src/styles.scss",
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -384,18 +387,18 @@
         }
       }
     },
-    "client-auth": {
+    "auth": {
       "projectType": "library",
-      "root": "libs/client/auth",
-      "sourceRoot": "libs/client/auth/src",
+      "root": "libs/auth",
+      "sourceRoot": "libs/auth/src",
       "prefix": "multivendor-fullstack",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/client/auth/src/**/*.ts",
-              "libs/client/auth/src/**/*.html"
+              "libs/auth/src/**/*.ts",
+              "libs/auth/src/**/*.html"
             ]
           }
         },
@@ -488,6 +491,98 @@
           "outputs": ["coverage/libs/entities"],
           "options": {
             "jestConfig": "libs/entities/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "material": {
+      "root": "libs/material",
+      "sourceRoot": "libs/material/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/material/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/material"],
+          "options": {
+            "jestConfig": "libs/material/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "admin-users": {
+      "projectType": "library",
+      "root": "libs/admin/users",
+      "sourceRoot": "libs/admin/users/src",
+      "prefix": "multivendor-fullstack",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/admin/users/src/**/*.ts",
+              "libs/admin/users/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/admin/users"],
+          "options": {
+            "jestConfig": "libs/admin/users/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-admin": {
+      "root": "libs/api/admin",
+      "sourceRoot": "libs/api/admin/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/admin/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/admin"],
+          "options": {
+            "jestConfig": "libs/api/admin/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "admin-dashboard": {
+      "projectType": "library",
+      "root": "libs/admin/dashboard",
+      "sourceRoot": "libs/admin/dashboard/src",
+      "prefix": "multivendor-fullstack",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/admin/dashboard/src/**/*.ts",
+              "libs/admin/dashboard/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/admin/dashboard"],
+          "options": {
+            "jestConfig": "libs/admin/dashboard/jest.config.js",
             "passWithNoTests": true
           }
         }

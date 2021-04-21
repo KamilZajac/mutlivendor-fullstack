@@ -1,8 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req, Query } from '@nestjs/common';
 import { ShopItemService } from './shop-item.service';
 import { AuthGuard } from '@nestjs/passport';
 import { ShopItemResponse } from '@multivendor-fullstack/interfaces';
 import { CreateShopItemDto, UpdateShopItemDto } from '@multivendor-fullstack/dto';
+
+export interface ShopItemsQuery {
+  status: string;
+  page: string;
+}
 
 @Controller('shop-item')
 export class ShopItemController {
@@ -18,8 +23,10 @@ export class ShopItemController {
   }
 
   @Get()
-  findAll(): Promise<ShopItemResponse[]>  {
-    return this.shopItemService.findAll();
+  findAll(
+    @Query() query: ShopItemsQuery
+  ): Promise<ShopItemResponse[]>  {
+    return this.shopItemService.findAll(query);
   }
 
   @Get(':id')

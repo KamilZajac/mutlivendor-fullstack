@@ -1,5 +1,6 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { ShopItem } from './shop-item.entity';
+import { UserRole } from '@multivendor-fullstack/interfaces';
 
 @Entity()
 export class User extends BaseEntity {

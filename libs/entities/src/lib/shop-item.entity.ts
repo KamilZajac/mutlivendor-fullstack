@@ -6,6 +6,7 @@ import {
 	PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User } from './user.entity';
+import { ShopItemStatus } from '@multivendor-fullstack/interfaces';
 
 @Entity()
 export class ShopItem extends BaseEntity {
@@ -39,7 +40,7 @@ export class ShopItem extends BaseEntity {
 	validUntil: Date;
 
 	@Column({
-		default: 'pending'
+		default: 'pending',
 	})
 	status: string;
 

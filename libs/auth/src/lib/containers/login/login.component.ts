@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LoginDto } from '@multivendor-fullstack/dto';
 import { Store } from '@ngrx/store';
 import * as authActions from '../../+state/auth.actions';
-import { AuthState } from '@multivendor-fullstack/client/auth';
+import { AuthState } from '@multivendor-fullstack/auth';
 
 @Component({
   selector: 'multivendor-fullstack-login',

@@ -7,6 +7,11 @@ import { User } from '@multivendor-fullstack/entities';
 @Injectable()
 export class UserService {
 
+  filterUser(user: User): UserResponse {
+    const { email, id, username, role } = user;
+    return { email, id, username, role };
+  }
+
 	async validateCredentials (user: User, password: string): Promise<boolean> {
 		return compare(password, user.password)
 	}
@@ -38,11 +43,16 @@ export class UserService {
 	}
 
 	async findByUserName(username: string): Promise<User> {
-	  return await User.findOneOrFail({
+	  return await User.findOne({
 			where: {
 				username
 			}
 		});
 	}
+
+	async findAll(): Promise<UserResponse[]> {
+	  const users = await User.find();
+	  return users.map(user => this.filterUser(user))
+  }
 
 }

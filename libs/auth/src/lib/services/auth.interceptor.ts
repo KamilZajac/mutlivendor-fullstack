@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
-import { AuthService } from '@multivendor-fullstack/client/auth';
+import { AuthService } from '@multivendor-fullstack/auth';
 
 
 @Injectable()

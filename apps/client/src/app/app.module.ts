@@ -9,9 +9,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Store, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { AuthInterceptor } from '../../../../libs/client/auth/src/lib/services/auth.interceptor';
+import { AuthInterceptor } from '../../../../libs/auth/src/lib/services/auth.interceptor';
 import { ClientStorefrontModule } from '@multivendor-fullstack/client/storefront';
-import { AuthModule, authRoutes } from '@multivendor-fullstack/client/auth';
+import { AuthModule, authRoutes } from '@multivendor-fullstack/auth';
 
 @NgModule({
   declarations: [AppComponent],

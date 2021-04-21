@@ -1,7 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { ShopItemResponse } from '@multivendor-fullstack/interfaces';
+import { ShopItemResponse, ShopItemStatus } from '@multivendor-fullstack/interfaces';
 import { CreateShopItemDto, UpdateShopItemDto } from '@multivendor-fullstack/dto';
 import { ShopItem } from '@multivendor-fullstack/entities';
+import { ShopItemsQuery } from './shop-item.controller';
 
 @Injectable()
 export class ShopItemService {
@@ -17,8 +18,18 @@ export class ShopItemService {
 		return newItem;
   }
 
-  async findAll(): Promise<ShopItemResponse[]> {
-    return await ShopItem.find()
+  async findAll(query: ShopItemsQuery): Promise<ShopItemResponse[]> {
+    let filters = {};
+    console.log(query)
+    if(query.status && query.status in ShopItemStatus) {
+      filters = {...filters, status: ShopItemStatus[status]}
+    }
+
+    return await ShopItem.find({
+      where: {
+        ...filters
+      }
+    })
   }
 
   async findOne(id: string): Promise<ShopItemResponse> {

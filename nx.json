@@ -21,10 +21,14 @@
     "admin-e2e": { "tags": [], "implicitDependencies": ["admin"] },
     "ui": { "tags": [] },
     "client-storefront": { "tags": [] },
-    "client-auth": { "tags": [] },
+    "auth": { "tags": [] },
     "api-auth": { "tags": [] },
     "api-user": { "tags": [] },
     "api-shop-item": { "tags": [] },
-    "entities": { "tags": [] }
+    "entities": { "tags": [] },
+    "material": { "tags": [] },
+    "admin-users": { "tags": [] },
+    "api-admin": { "tags": [] },
+    "admin-dashboard": { "tags": [] }
   }
 }

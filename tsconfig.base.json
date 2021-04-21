@@ -28,12 +28,18 @@
         "libs/client/storefront/src/index.ts"
       ],
       "@multivendor-fullstack/api/auth": ["libs/api/auth/src/index.ts"],
-      "@multivendor-fullstack/client/auth": ["libs/client/auth/src/index.ts"],
+      "@multivendor-fullstack/auth": ["libs/auth/src/index.ts"],
       "@multivendor-fullstack/api/user": ["libs/api/user/src/index.ts"],
       "@multivendor-fullstack/api/shop-item": [
         "libs/api/shop-item/src/index.ts"
       ],
-      "@multivendor-fullstack/entities": ["libs/entities/src/index.ts"]
+      "@multivendor-fullstack/entities": ["libs/entities/src/index.ts"],
+      "@multivendor-fullstack/material": ["libs/material/src/index.ts"],
+      "@multivendor-fullstack/admin/users": ["libs/admin/users/src/index.ts"],
+      "@multivendor-fullstack/api/admin": ["libs/api/admin/src/index.ts"],
+      "@multivendor-fullstack/admin/dashboard": [
+        "libs/admin/dashboard/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

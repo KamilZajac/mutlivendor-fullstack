@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { HttpClient } from '@angular/common/http';
 import { take } from 'rxjs/operators';
-import { AuthState } from '@multivendor-fullstack/client/auth';
+import { AuthState } from '@multivendor-fullstack/auth';
 
 @Component({
   selector: 'multivendor-fullstack-root',

@@ -22,14 +22,14 @@ export interface RefreshTokenPayload {
 export class AuthService {
 
   filterUser(user: User): UserResponse {
-    const { email, id, username } = user;
-    return { email, id, username };
+    const { email, id, username, role } = user;
+    return { email, id, username, role };
   }
 
   constructor(protected jwt: JwtService, private usersService: UserService) {
   }
 
-  public async generateAccessToken(user: User): Promise<string> {
+  public async generateAccessToken(user: UserResponse): Promise<string> {
     const opts: SignOptions = {
       ...BASE_OPTIONS,
       subject: String(user.id)
@@ -38,7 +38,7 @@ export class AuthService {
     return this.jwt.signAsync({}, opts);
   }
 
-  public async generateRefreshToken(user: User, expiresIn: number): Promise<string> {
+  public async generateRefreshToken(user: UserResponse, expiresIn: number): Promise<string> {
     const token = await this.createRefreshToken(user, expiresIn);
 
     const opts: SignOptions = {
@@ -114,7 +114,7 @@ export class AuthService {
   }
 
 
-  public async createRefreshToken(user: User, ttl: number): Promise<RefreshToken> {
+  public async createRefreshToken(user: UserResponse, ttl: number): Promise<RefreshToken> {
     const token = new RefreshToken();
 
     token.user_id = user.id;
@@ -140,8 +140,10 @@ export class AuthService {
       throw new UnauthorizedException('The login is invalid');
     }
 
-    const token = await this.generateAccessToken(user);
-    const refresh = await this.generateRefreshToken(user, 60 * 60 * 24 * 30);
+    const filteredUser = this.filterUser(user)
+
+    const token = await this.generateAccessToken(filteredUser);
+    const refresh = await this.generateRefreshToken(filteredUser, 60 * 60 * 24 * 30);
 
     return {
       success: true,
@@ -153,7 +155,7 @@ export class AuthService {
   }
 
   public async register(registerData: RegisterDto): Promise<AuthenticationResponse> {
-    const user = await this.usersService.create(registerData);
+    const user = this.filterUser(await this.usersService.create(registerData));
 
     const token = await this.generateAccessToken(user);
     const refresh = await this.generateRefreshToken(user, 60 * 60 * 24 * 30);
@@ -162,7 +164,7 @@ export class AuthService {
     return {
       success: true,
       data: {
-        user: this.filterUser(user),
+        user: user,
         jwt: { token, refresh }
       }
     };

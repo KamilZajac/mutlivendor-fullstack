@@ -12,5 +12,9 @@ module.exports = {
     '<rootDir>/libs/api/user',
     '<rootDir>/libs/api/shop-item',
     '<rootDir>/libs/entities',
+    '<rootDir>/libs/material',
+    '<rootDir>/libs/admin/users',
+    '<rootDir>/libs/api/admin',
+    '<rootDir>/libs/admin/dashboard',
   ],
 };
