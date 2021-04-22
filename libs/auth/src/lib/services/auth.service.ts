@@ -1,13 +1,12 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RegisterDto, LoginDto } from '@multivendor-fullstack/dto';
-import { AuthenticationResponse, UserResponse } from '@multivendor-fullstack/interfaces';
+import { AuthenticationResponse, SimpleUser } from '@multivendor-fullstack/interfaces';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AuthState } from '../+state/auth.reducer';
 import { Store } from '@ngrx/store';
 import * as authActions from '../+state/auth.actions';
-
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +23,7 @@ export class AuthService {
   ) {
   }
 
-  public login(data: LoginDto): Observable<UserResponse> {
+  public login(data: LoginDto): Observable<SimpleUser> {
     return this.http.post<AuthenticationResponse>(`${this.apiURL}/auth/login`, data)
       .pipe(
         tap((res: AuthenticationResponse) => {
@@ -58,6 +57,10 @@ export class AuthService {
           return of(e)
         })
       );
+  }
+
+  getMe() {
+    return this.http.get<SimpleUser>(`${this.apiURL}/user/me`)
   }
 
 

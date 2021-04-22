@@ -1,0 +1,7 @@
+<mat-list>
+<multivendor-fullstack-single-user
+  *ngFor="let user of $users | async" [user]="user"
+  [isMe]='user?.id === ($me | async)?.id'
+  (roleChanged)='updateUser($event, user.id)'
+></multivendor-fullstack-single-user>
+</mat-list>

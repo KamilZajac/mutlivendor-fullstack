@@ -3,15 +3,23 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
-import { AuthService } from '@multivendor-fullstack/auth';
+import { AuthService, AuthState, selectCurrentUser } from '@multivendor-fullstack/auth';
+import { Store } from '@ngrx/store';
+import { SimpleUser } from '@multivendor-fullstack/interfaces';
+import * as authActions from '../+state/auth.actions';
 
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   private isRefreshing = false;
+  private isFetchingMe = false;
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  constructor(public authService: AuthService, private router: Router) {
+  constructor(
+    public authService: AuthService,
+    private router: Router,
+    private authStore: Store<AuthState>,
+    ) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
@@ -24,6 +32,9 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     return next.handle(request).pipe(
+      tap(() => {
+        this.checkMe()
+      }),
       catchError(error => {
         if (error instanceof HttpErrorResponse && error.status === 401) {
           return this.handle401Error(request, next);
@@ -31,6 +42,20 @@ export class AuthInterceptor implements HttpInterceptor {
           return throwError(error);
         }
       }));
+  }
+
+
+  private checkMe() {
+    this.authStore.select(selectCurrentUser).pipe(take(1)).subscribe(user => {
+      if(!this.isFetchingMe && !user && this.authService.getJwtToken()) {
+        console.log('łełołeło')
+          this.isFetchingMe = true
+          this.authService.getMe().pipe(take(1)).subscribe((user: SimpleUser) =>{
+            this.authStore.dispatch(authActions.loginSuccess({user}))
+          }, e => console.log(e))
+
+      }
+    })
   }
 
   private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
@@ -43,6 +68,9 @@ export class AuthInterceptor implements HttpInterceptor {
           this.isRefreshing = false;
           this.refreshTokenSubject.next(tokens.token);
           return next.handle(this.addToken(request, tokens.token));
+        }),
+        tap(() => {
+          this.checkMe()
         }),
         catchError(e => {
           this.router.navigateByUrl('/auth');

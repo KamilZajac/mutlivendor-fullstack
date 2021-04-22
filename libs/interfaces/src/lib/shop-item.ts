@@ -1,4 +1,4 @@
-import { UserResponse } from './user';
+import { SimpleUser } from './user';
 
 export class ShopItemResponse {
 	createdAt: Date;
@@ -9,7 +9,7 @@ export class ShopItemResponse {
 	status: string;
 	updatedAt: Date;
 	validUntil: Date;
-	owner: UserResponse
+	owner: SimpleUser
 }
 export enum ShopItemStatus {
   pending = 'pending',

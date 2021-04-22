@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { PassportStrategy } from '@nestjs/passport'
 import { ExtractJwt, Strategy } from 'passport-jwt'
-import { UserResponse } from '@multivendor-fullstack/interfaces';
+import { SimpleUser } from '@multivendor-fullstack/interfaces';
 import { UserService } from '@multivendor-fullstack/api/user';
 
 export interface AccessTokenPayload {
@@ -24,7 +24,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 		this.users = users
 	}
 
-	async validate (payload: AccessTokenPayload): Promise<UserResponse> {
+	async validate (payload: AccessTokenPayload): Promise<SimpleUser> {
 		const { sub: id } = payload
 
 		const user = await this.users.findById(id)

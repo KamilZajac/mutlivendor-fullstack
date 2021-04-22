@@ -1,13 +1,13 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { compare, hash } from 'bcrypt';
-import { UserResponse } from '@multivendor-fullstack/interfaces';
+import { SimpleUser } from '@multivendor-fullstack/interfaces';
 import { RegisterDto, UpdateUserDto } from '@multivendor-fullstack/dto';
 import { User } from '@multivendor-fullstack/entities';
 
 @Injectable()
 export class UserService {
 
-  filterUser(user: User): UserResponse {
+  filterUser(user: User): SimpleUser {
     const { email, id, username, role } = user;
     return { email, id, username, role };
   }
@@ -50,9 +50,23 @@ export class UserService {
 		});
 	}
 
-	async findAll(): Promise<UserResponse[]> {
+	async findAll(): Promise<SimpleUser[]> {
 	  const users = await User.find();
 	  return users.map(user => this.filterUser(user))
   }
 
+  async updateUser(id: string, updateUserDto: UpdateUserDto) {
+    await User.update(id, {...updateUserDto})
+    return this.filterUser(await User.findOne(id))
+  }
+
+  public getMe(request) {
+    const user = request.user;
+
+    try {
+      return this.filterUser(user)
+    } catch (e) {
+      throw new Error(e)
+    }
+  }
 }

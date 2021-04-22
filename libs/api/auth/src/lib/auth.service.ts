@@ -2,7 +2,7 @@ import { Injectable, UnauthorizedException, UnprocessableEntityException } from 
 import { RefreshToken } from './entities/refreshToken.entity';
 import { SignOptions, TokenExpiredError } from 'jsonwebtoken';
 import { JwtService } from '@nestjs/jwt';
-import { AuthenticationResponse, UserResponse } from '@multivendor-fullstack/interfaces';
+import { AuthenticationResponse, SimpleUser } from '@multivendor-fullstack/interfaces';
 import { LoginDto, RefreshTokenDto, RegisterDto } from '@multivendor-fullstack/dto';
 import { User } from '@multivendor-fullstack/entities';
 import { UserModule, UserService } from '@multivendor-fullstack/api/user';
@@ -21,7 +21,7 @@ export interface RefreshTokenPayload {
 @Injectable()
 export class AuthService {
 
-  filterUser(user: User): UserResponse {
+  filterUser(user: User): SimpleUser {
     const { email, id, username, role } = user;
     return { email, id, username, role };
   }
@@ -29,7 +29,7 @@ export class AuthService {
   constructor(protected jwt: JwtService, private usersService: UserService) {
   }
 
-  public async generateAccessToken(user: UserResponse): Promise<string> {
+  public async generateAccessToken(user: SimpleUser): Promise<string> {
     const opts: SignOptions = {
       ...BASE_OPTIONS,
       subject: String(user.id)
@@ -38,7 +38,7 @@ export class AuthService {
     return this.jwt.signAsync({}, opts);
   }
 
-  public async generateRefreshToken(user: UserResponse, expiresIn: number): Promise<string> {
+  public async generateRefreshToken(user: SimpleUser, expiresIn: number): Promise<string> {
     const token = await this.createRefreshToken(user, expiresIn);
 
     const opts: SignOptions = {
@@ -114,7 +114,7 @@ export class AuthService {
   }
 
 
-  public async createRefreshToken(user: UserResponse, ttl: number): Promise<RefreshToken> {
+  public async createRefreshToken(user: SimpleUser, ttl: number): Promise<RefreshToken> {
     const token = new RefreshToken();
 
     token.user_id = user.id;

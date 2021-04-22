@@ -1,11 +1,11 @@
-import { UserResponse } from './user';
+import { SimpleUser } from './user';
 
 export interface CreateRefreshTokenResponse {
 
 }
 
 export interface AuthenticationPayload {
-	user: UserResponse
+	user: SimpleUser
 	jwt: {
 		token: string
 		refresh?: string

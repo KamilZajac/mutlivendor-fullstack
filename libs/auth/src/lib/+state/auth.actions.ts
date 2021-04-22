@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { UserResponse } from '@multivendor-fullstack/interfaces';
+import { SimpleUser } from '@multivendor-fullstack/interfaces';
 import { LoginDto } from '@multivendor-fullstack/dto';
 
 export enum AuthActionTypes {
@@ -16,7 +16,7 @@ export const login = createAction(
 
 export const loginSuccess = createAction(
   AuthActionTypes.LoginSuccess,
-  props<{ user: UserResponse }>()
+  props<{ user: SimpleUser }>()
 );
 
 export const loginFailure = createAction(

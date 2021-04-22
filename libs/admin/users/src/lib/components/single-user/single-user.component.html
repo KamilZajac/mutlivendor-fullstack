@@ -1,0 +1,19 @@
+<mat-list-item fxFlex [disabled]='isMe'>
+  <div class='left' fxFlex='70%'>
+    <h3 matLine> {{user.username}} </h3>
+    <p matLine>
+      <span> {{user.email}} </span>
+    </p>
+  </div>
+
+  <div class='right' fxFlex='30%'>
+    <mat-form-field appearance='fill'>
+      <mat-label>Select an option</mat-label>
+      <mat-select [value]='user.role' (selectionChange)='onRoleChange($event)'>
+        <mat-option value='user'>User</mat-option>
+        <mat-option value='admin'>Admin</mat-option>
+        <mat-option value='seller'>Seller</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</mat-list-item>

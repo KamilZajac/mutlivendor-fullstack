@@ -13,10 +13,6 @@ export class AppComponent {
   title = 'client';
 
   constructor(private store: Store<AuthState>, private http: HttpClient) {
-
-    store.pipe(select((state) => state.auth.user)).subscribe(res => {
-      console.log(res);
-    });
   }
 
   public sendRequest() {
