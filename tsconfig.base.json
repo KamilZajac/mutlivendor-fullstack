@@ -39,7 +39,9 @@
       "@multivendor-fullstack/api/admin": ["libs/api/admin/src/index.ts"],
       "@multivendor-fullstack/admin/dashboard": [
         "libs/admin/dashboard/src/index.ts"
-      ]
+      ],
+      "@multivendor-fullstack/api-shared": ["libs/api-shared/src/index.ts"],
+      "@multivendor-fullstack/api/shared": ["libs/api/shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

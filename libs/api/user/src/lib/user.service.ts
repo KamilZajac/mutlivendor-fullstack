@@ -69,4 +69,9 @@ export class UserService {
       throw new Error(e)
     }
   }
+
+  public async deleteUser(id: string) {
+    await User.delete(id)
+    return 1;
+  }
 }

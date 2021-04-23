@@ -28,7 +28,7 @@
     "entities": { "tags": [] },
     "material": { "tags": [] },
     "admin-users": { "tags": [] },
-    "api-admin": { "tags": [] },
-    "admin-dashboard": { "tags": [] }
+    "admin-dashboard": { "tags": [] },
+    "api-shared": { "tags": [] }
   }
 }

@@ -8,13 +8,12 @@ import { NestFactory, Reflector } from '@nestjs/core';
 import * as helmet from 'helmet';
 
 import { AppModule } from './app/app.module';
-import { RolesGuard } from '@multivendor-fullstack/api/auth';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
   app.use(helmet());
-    app.useGlobalPipes(
+  app.useGlobalPipes(
     new ValidationPipe({
       disableErrorMessages: true,
       exceptionFactory: (errors: ValidationError[]) => {

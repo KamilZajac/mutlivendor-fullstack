@@ -5,10 +5,9 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { getMetadataArgsStorage } from 'typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { AuthModule, RolesGuard } from '@multivendor-fullstack/api/auth';
+import { AuthModule } from '@multivendor-fullstack/api/auth';
 import { ShopItemModule } from '@multivendor-fullstack/api/shop-item';
 import { UserModule } from '@multivendor-fullstack/api/user';
-import { ApiAdminModule } from '@multivendor-fullstack/api/admin';
 import { APP_GUARD } from '@nestjs/core';
 
 @Module({
@@ -29,7 +28,6 @@ import { APP_GUARD } from '@nestjs/core';
     UserModule,
     ShopItemModule,
     AuthModule,
-    ApiAdminModule,
   ],
   controllers: [AppController],
   providers: [

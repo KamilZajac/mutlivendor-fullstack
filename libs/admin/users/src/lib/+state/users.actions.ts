@@ -1,7 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 import { SimpleUser } from '@multivendor-fullstack/interfaces';
+import { Update } from '@ngrx/entity';
 
-export const init = createAction('[Users Page] Init');
+export const loadAllUsers = createAction('[Users Page] Init');
 
 export const loadUsersSuccess = createAction(
   '[Users/API] Load Users Success',
@@ -15,7 +16,7 @@ export const loadUsersFailure = createAction(
 
 export const updateUser = createAction(
   '[Users/API] Update User',
-  props<{ id: string, role: string }>()
+  props<{update: Update<SimpleUser>}>()
 );
 
 export const updateUserSuccess = createAction(

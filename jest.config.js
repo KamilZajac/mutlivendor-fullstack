@@ -14,7 +14,7 @@ module.exports = {
     '<rootDir>/libs/entities',
     '<rootDir>/libs/material',
     '<rootDir>/libs/admin/users',
-    '<rootDir>/libs/api/admin',
     '<rootDir>/libs/admin/dashboard',
+    '<rootDir>/libs/api/shared',
   ],
 };

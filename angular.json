@@ -542,27 +542,6 @@
         }
       }
     },
-    "api-admin": {
-      "root": "libs/api/admin",
-      "sourceRoot": "libs/api/admin/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/api/admin/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/api/admin"],
-          "options": {
-            "jestConfig": "libs/api/admin/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "admin-dashboard": {
       "projectType": "library",
       "root": "libs/admin/dashboard",
@@ -583,6 +562,27 @@
           "outputs": ["coverage/libs/admin/dashboard"],
           "options": {
             "jestConfig": "libs/admin/dashboard/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-shared": {
+      "root": "libs/api/shared",
+      "sourceRoot": "libs/api/shared/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/shared/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/shared"],
+          "options": {
+            "jestConfig": "libs/api/shared/jest.config.js",
             "passWithNoTests": true
           }
         }

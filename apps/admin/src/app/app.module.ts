@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@multivendor-fullstack/material';
 import { dashboardRoutes } from '@multivendor-fullstack/admin/dashboard';
 import { AdminUsersModule } from '@multivendor-fullstack/admin/users';
+import { EntityDataModule } from '@ngrx/data';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +32,7 @@ import { AdminUsersModule } from '@multivendor-fullstack/admin/users';
       { initialNavigation: 'enabled' }),
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
+    EntityDataModule.forRoot({}),
     StoreDevtoolsModule.instrument({})
   ],
   providers: [

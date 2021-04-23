@@ -1,12 +1,12 @@
 <mat-list-item fxFlex [disabled]='isMe'>
-  <div class='left' fxFlex='70%'>
+  <div class='left' fxFlex='50%'>
     <h3 matLine> {{user.username}} </h3>
     <p matLine>
       <span> {{user.email}} </span>
     </p>
   </div>
 
-  <div class='right' fxFlex='30%'>
+  <div class='right' fxFlex='50%'>
     <mat-form-field appearance='fill'>
       <mat-label>Select an option</mat-label>
       <mat-select [value]='user.role' (selectionChange)='onRoleChange($event)'>
@@ -15,5 +15,8 @@
         <mat-option value='seller'>Seller</mat-option>
       </mat-select>
     </mat-form-field>
+
+    <button mat-raised-button color="warn" (click)='onDeleteClicked()'>Delete</button>
+
   </div>
 </mat-list-item>

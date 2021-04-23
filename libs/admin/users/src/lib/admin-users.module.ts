@@ -11,6 +11,16 @@ import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { EntityDataService, EntityDefinitionService, EntityMetadataMap } from '@ngrx/data';
+import { UserEntityService } from './services/user-entity.service';
+import { UserDataService } from './services/user-data.service';
+import { UsersResolver } from './services/users.resolver';
+import { MatButtonModule } from '@angular/material/button';
+
+
+export const entityMetadata: EntityMetadataMap = {
+  User: {}
+}
 
 export const usersRoutes: Route[] = [
   { path: '', component: UsersComponent },
@@ -25,8 +35,19 @@ export const usersRoutes: Route[] = [
     EffectsModule.forFeature([UsersEffects]),
     MatListModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatButtonModule
   ],
   declarations: [UsersComponent, SingleUserComponent],
+  providers: [UserEntityService, UserDataService, UsersResolver]
 })
-export class AdminUsersModule {}
+export class AdminUsersModule {
+  constructor(
+    private eds: EntityDefinitionService,
+    private entityDataService: EntityDataService,
+    private userDataService: UserDataService
+    ) {
+    eds.registerMetadataMap(entityMetadata)
+    entityDataService.registerService('User', userDataService)
+  }
+}

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Route, RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
-import { AdminUsersModule, usersRoutes } from '@multivendor-fullstack/admin/users';
+import { AdminUsersModule, UsersResolver, usersRoutes } from '@multivendor-fullstack/admin/users';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 export const dashboardRoutes: Route[] = [
@@ -12,7 +12,10 @@ export const dashboardRoutes: Route[] = [
     component: DashboardComponent,
     children: [
       {
-        path: 'users', children: usersRoutes
+        path: 'users', children: usersRoutes,
+        resolve: {
+          users: UsersResolver
+        }
       }
     ]
   },
@@ -28,6 +31,9 @@ export const dashboardRoutes: Route[] = [
   ],
   declarations: [
     DashboardComponent
+  ],
+  providers: [
+    UsersResolver
   ]
 })
 export class AdminDashboardModule {
