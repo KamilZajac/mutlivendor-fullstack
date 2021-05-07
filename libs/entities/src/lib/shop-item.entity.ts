@@ -1,12 +1,14 @@
 import {
-	BaseEntity,
-	Column,
-	Entity,
-	ManyToOne,
-	PrimaryGeneratedColumn,
+  BaseEntity,
+  Column,
+  Entity,
+  ManyToOne, OneToMany,
+  PrimaryGeneratedColumn
 } from 'typeorm';
 import { User } from './user.entity';
 import { ShopItemStatus } from '@multivendor-fullstack/interfaces';
+import { ShopItemImage } from './shop-item-image.entity';
+import { JoinColumn } from 'typeorm/browser';
 
 @Entity()
 export class ShopItem extends BaseEntity {
@@ -46,4 +48,7 @@ export class ShopItem extends BaseEntity {
 
 	@ManyToOne(() => User, user => user.shopItems)
 	owner: User;
+
+  @OneToMany(() => ShopItemImage, photo => photo.shopItem)
+  photos: ShopItemImage[];
 }

@@ -40,3 +40,5 @@ Thumbs.db
 
 ormconfig.json
 .env
+
+apps/api/storage

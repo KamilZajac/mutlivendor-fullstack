@@ -5,6 +5,8 @@ import { Route, RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { AdminUsersModule, UsersResolver, usersRoutes } from '@multivendor-fullstack/admin/users';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ProductsResolver, productsRoutes } from '@multivendor-fullstack/admin/products';
+
 
 export const dashboardRoutes: Route[] = [
   {
@@ -15,6 +17,12 @@ export const dashboardRoutes: Route[] = [
         path: 'users', children: usersRoutes,
         resolve: {
           users: UsersResolver
+        }
+      },
+      {
+        path: 'products', children: productsRoutes,
+        resolve: {
+          products: ProductsResolver
         }
       }
     ]
@@ -33,7 +41,7 @@ export const dashboardRoutes: Route[] = [
     DashboardComponent
   ],
   providers: [
-    UsersResolver
+    UsersResolver, ProductsResolver
   ]
 })
 export class AdminDashboardModule {

@@ -15,6 +15,7 @@ import { MaterialModule } from '@multivendor-fullstack/material';
 import { dashboardRoutes } from '@multivendor-fullstack/admin/dashboard';
 import { AdminUsersModule } from '@multivendor-fullstack/admin/users';
 import { EntityDataModule } from '@ngrx/data';
+import { AdminProductsModule } from '@multivendor-fullstack/admin/products';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { EntityDataModule } from '@ngrx/data';
     BrowserAnimationsModule,
     MaterialModule,
     AdminUsersModule,
+    AdminProductsModule,
     RouterModule.forRoot(
       [
         { path: 'dashboard', children: dashboardRoutes },

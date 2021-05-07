@@ -29,6 +29,6 @@ export class User extends BaseEntity {
 	})
 	role: string;
 
-	@OneToMany(() => ShopItem, photo => photo.owner)
+	@OneToMany(() => ShopItem, item => item.owner)
 	shopItems: ShopItem[];
 }

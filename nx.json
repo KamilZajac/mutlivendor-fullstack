@@ -29,6 +29,7 @@
     "material": { "tags": [] },
     "admin-users": { "tags": [] },
     "admin-dashboard": { "tags": [] },
-    "api-shared": { "tags": [] }
+    "api-shared": { "tags": [] },
+    "admin-products": { "tags": [] }
   }
 }

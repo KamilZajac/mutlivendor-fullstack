@@ -587,6 +587,31 @@
           }
         }
       }
+    },
+    "admin-products": {
+      "projectType": "library",
+      "root": "libs/admin/products",
+      "sourceRoot": "libs/admin/products/src",
+      "prefix": "multivendor-fullstack",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/admin/products/src/**/*.ts",
+              "libs/admin/products/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/admin/products"],
+          "options": {
+            "jestConfig": "libs/admin/products/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }
