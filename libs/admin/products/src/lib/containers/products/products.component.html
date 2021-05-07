@@ -1,1 +1,4 @@
-<p>products works!</p>
+<single-admin-product *ngFor="let prod of $products | async"
+                      [product]='prod'
+                      (productUpdated)='productUpdated($event)'
+></single-admin-product>

@@ -9,7 +9,10 @@ export class ShopItemResponse {
 	status: string;
 	updatedAt: Date;
 	validUntil: Date;
-	owner: SimpleUser
+	owner: SimpleUser;
+  photos?: [{
+	  id: string, path: string
+  }]
 }
 export enum ShopItemStatus {
   pending = 'pending',

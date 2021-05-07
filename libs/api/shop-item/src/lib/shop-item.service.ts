@@ -10,8 +10,9 @@ import * as fs from 'fs';
 
 @Injectable()
 export class ShopItemService {
-  async create(createShopItemDto: CreateShopItemDto, user, files): Promise<ShopItemResponse> {
 
+  // Todo fix interfaces
+  async create(createShopItemDto: CreateShopItemDto, user, files): Promise<ShopItemResponse | ShopItem> {
     try {
       const newItem = new ShopItem();
       newItem.price = createShopItemDto.price;
@@ -23,7 +24,6 @@ export class ShopItemService {
 
       if (files && files.photo) {
         files.photo.forEach(file => {
-          console.log(file);
           const photo = new ShopItemImage();
           photo.path = file.filename;
           photo.shopItem = newItem;
@@ -36,18 +36,18 @@ export class ShopItemService {
     } catch (e) {
       try {
         if (files) {
-          console.log('FOTOO');
-          // fs.unlinkSync(path.join(storageDir(), 'product-photos', photo.filename));
+          files.photo.forEach(photo => {
+            fs.unlinkSync(path.join(storageDir(), 'product-photos', photo.path));
+          })
         }
       } catch (e2) {
         console.log(e2);
       }
       throw e;
     }
-
   }
 
-  async findAll(query: ShopItemsQuery): Promise<ShopItemResponse[]> {
+  async findAll(query: ShopItemsQuery): Promise<ShopItemResponse[] | ShopItem[]> {
     let filters = {};
 
     if (query.status && query.status in ShopItemStatus) {
@@ -64,14 +64,11 @@ export class ShopItemService {
     });
   }
 
-  async findOne(id: string): Promise<ShopItemResponse> {
+  async findOne(id: string): Promise<ShopItemResponse | ShopItem> {
     return await ShopItem.findOneOrFail(id);
   }
 
-  async update(id: string, updateShopItemDto: UpdateShopItemDto): Promise<ShopItemResponse> {
-    if (!updateShopItemDto.name && !updateShopItemDto.price && !updateShopItemDto.description) {
-      throw new BadRequestException('At least one value should be provided');
-    }
+  async update(id: string, updateShopItemDto: UpdateShopItemDto): Promise<ShopItemResponse | ShopItem> {
     await ShopItem.update(id, { ...updateShopItemDto });
 
     return await ShopItem.findOne(id);

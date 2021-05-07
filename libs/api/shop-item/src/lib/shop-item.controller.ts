@@ -51,18 +51,18 @@ export class ShopItemController {
   @Get()
   findAll(
     @Query() query: ShopItemsQuery
-  ): Promise<ShopItemResponse[]> {
+  ): Promise<ShopItemResponse[]  | ShopItem[]> {
     return this.shopItemService.findAll(query);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<ShopItemResponse> {
+  findOne(@Param('id') id: string): Promise<ShopItemResponse | ShopItem> {
     return this.shopItemService.findOne(id);
   }
 
   @UseGuards(AuthGuard('jwt'))
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateShopItemDto: UpdateShopItemDto): Promise<ShopItemResponse> {
+  update(@Param('id') id: string, @Body() updateShopItemDto: UpdateShopItemDto): Promise<ShopItemResponse | ShopItem> {
     return this.shopItemService.update(id, updateShopItemDto);
   }
 

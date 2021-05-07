@@ -10,4 +10,7 @@ export class UpdateShopItemDto {
 	@IsNumber()
 	@IsOptional()
 	public price?: number;
+	@IsString()
+  @IsOptional()
+  public status?: string;
 }

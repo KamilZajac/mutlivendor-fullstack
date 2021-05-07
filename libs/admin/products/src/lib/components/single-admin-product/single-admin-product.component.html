@@ -1,1 +1,23 @@
-<p>single-admin-product works!</p>
+<mat-list-item fxFlex >
+  <div class='left' fxFlex='50%'>
+    <h3 matLine> {{product.name}} </h3>
+    <p matLine>
+      <span> {{product.description}} </span>
+    </p>
+  </div>
+
+  <div class='right' fxFlex='50%'>
+
+    <mat-form-field appearance='fill'>
+      <mat-label>Select an option</mat-label>
+      <mat-select [value]='product.status' (selectionChange)='onStatusChange($event)'>
+        <mat-option value='pending'>Pending</mat-option>
+        <mat-option value='denied'>Denied</mat-option>
+        <mat-option value='expired'>Expired</mat-option>
+        <mat-option value='active'>Active</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="warn" (click)='onDeleteClicked()'>Delete</button>
+
+  </div>
+</mat-list-item>
